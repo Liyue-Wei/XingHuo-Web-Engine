@@ -2,6 +2,10 @@
     <meta charset="utf-8">
     <title>星火网页引擎</title>
     <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
         body {
             background: linear-gradient(135deg, #000 0%, #444 100%);
         }
@@ -9,6 +13,7 @@
             height: 100px;
             display: block;
             margin: 40px 40px auto;
+            animation: fadeIn 1.0s ease;
         }
     </style>
 </head>
