@@ -8,26 +8,40 @@
             to { opacity: 1; }
         }
         body {
-            background: linear-gradient(135deg, #000 0%, #444 100%);
+            background: linear-gradient(135deg, #000 0%, #555 100%);
+            animation: fadeIn 1.0s ease;
         }
         .logo {
             height: 100px;
             display: block;
             margin: 40px 40px auto;
-            animation: fadeIn 1.0s ease;
-            transition: filter 0.5s;
+            transition: filter 0.3s;
         }
         .logo:hover {
             filter: drop-shadow(0 0 8px #FF9800);
         }
         header {
-
+            position: relative;
+            height: 120px;
         }
         nav {
-
+            position: absolute;
+            top: 40px;
+            right: 40px;
         }
-        nav:hover {
-
+        nav ul{
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+        nav a {
+            color: #FFF;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.2s;
+        }
+        nav a:hover {
+            color: #FF9800;
         }
         main {
 
@@ -43,16 +57,59 @@
 <body>
     <header>
         <img  class="logo" src="/Demo-Web/LOGO/星火网页引擎 图标.png" alt="星火网页引擎 图标.png">
+        <nav>
+            <ul>
+                <li><a href="">文档</a></li>
+                <li><a href="">部署</a></li>
+                <li><a href="">主题</a></li>
+            </ul>
+        </nav>
     </header>
-    <nav>
-
-    </nav>
     <main>
-        <section>
-            
-        </section>
+
     </main>
     <footer>
 
     </footer>
 </body>
+
+<!-- 
+    常見CSS互動功能說明：
+
+    :hover         滑鼠懸浮於元素上時觸發（如按鈕變色、圖片發光等）
+    :active        元素被點擊時觸發（如按鈕按下的瞬間）
+    :focus         元素獲得焦點時觸發（如輸入框被選中時高亮）
+    :visited       已經訪問過的連結樣式
+    :checked       表單的核取方塊或單選按鈕被選中時
+    :disabled      表單元素被禁用時
+    :enabled       表單元素可用時
+    :focus-visible 僅在鍵盤操作聚焦時顯示樣式
+    :target        當前URL片段（#id）對應的元素
+    :nth-child()   選中特定順序的元素（如列表的第n個項目）
+    :first-child   選中父元素下的第一個子元素
+    :last-child    選中父元素下的最後一個子元素
+
+    這些互動功能可搭配 transition、animation 等動畫屬性，讓網頁更有動態效果與互動性。
+    若需更複雜的互動，可結合 JavaScript 事件（如 click、dblclick、keydown、drag 等）。
+-->
+
+<!-- 
+    其他常用HTML语义标签说明：
+
+    <article>    用于独立的内容块，如新闻、博客文章等。
+    <aside>      用于侧边栏内容，通常包含与主内容间接相关的信息。
+    <section>    用于页面中的独立区块，每个区块有独立主题。
+    <figure>     用于插图、代码块等独立内容，通常配合<figcaption>说明。
+    <figcaption> 为<figure>中的内容添加说明文字。
+    <address>    用于展示联系信息。
+    <time>       用于标记时间或日期。
+    <mark>       用于高亮显示文本。
+    <details>    用于可展开/折叠的内容块，配合<summary>使用。
+    <summary>    <details>的标题部分，点击可展开/收起内容。
+    <nav>        用于导航栏，通常包含链接列表。
+    <main>       页面主要内容区域，只能有一个<main>。
+    <header>     页眉或区块头部，可包含标题、logo等。
+    <footer>     页脚或区块底部，可包含版权、联系信息等。
+    <ul>/<ol>/<li> 用于无序/有序列表及其项，常用于导航或内容列表。
+    <h1>~<h6>    标题标签，用于内容分级。
+-->
