@@ -3,58 +3,42 @@
     <meta charset="utf-8">
     <title>星火网页引擎</title>
     <link rel="icon" type="image/png" href="/Demo-Web/LOGO/XingHuo Web Engine LOGO.png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
-
     <style>
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
         body {
             background: linear-gradient(135deg, #000 0%, #999 100%);
-            animation: fadeIn 1.0s ease;
+            animation: fadeIn 1s;
+            font-family: 'Noto Sans SC', sans-serif;
+            margin: 0;
         }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .logo {
             height: 100px;
             display: block;
             margin: 40px 40px auto;
             transition: filter 0.3s;
         }
-        .logo:hover {
-            filter: drop-shadow(0 0 16px #FF9800);
-        }
-        .logo-line {
+        .logo:hover { filter: drop-shadow(0 0 16px #FF9800); }
+        .logo-line, .logo-vert {
             position: fixed;
-            top: 160px;
-            left: 0px;
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.15);
-        }
-        .logo-vert {
-            position: fixed;
-            left: 340px;    
-            top: 0px;       
-            width: 2px;
-            height: 100%;   
             background: rgba(255,255,255,0.15);
         }
-        header {
-            position: relative;
-            height: 120px;
-        }
+        .logo-line { top: 160px; left: 0; width: 100%; height: 2px; }
+        .logo-vert { left: 340px; top: 0; width: 2px; height: 100%; }
+        header { position: relative; height: 120px; }
         nav {
             position: absolute;
             top: 60px;
             right: 60px;
         }
-        nav ul{
+        nav ul {
             display: flex;
             gap: 60px;
             list-style: none;
+            margin: 0;
+            padding: 0;
         }
         nav a {
             color: #FFF;
@@ -62,8 +46,22 @@
             font-size: 20px;
             transition: color 0.2s;
         }
-        nav a:hover {
-            color: #FF9800;
+        nav a:hover { color: #FF9800; }
+        .animated-grid {
+            width: calc(100% - 340px);
+            height: calc(100% - 160px);
+            position: absolute;
+            top: 160px;
+            left: 340px;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: pan-grid 8s ease-in-out infinite;
+        }
+        @keyframes pan-grid {
+            0% { background-position: 0 0; }
+            100% { background-position: 420px 420px; }
         }
         main {
             position: absolute;
@@ -77,77 +75,27 @@
             box-shadow: 0 0 16px 4px rgba(0,0,0,0.3);
             transition: box-shadow 0.7s;
         }
-        main:hover {
-            box-shadow: 0 0 16px 4px rgba(255, 152, 0, 0.75);
-        }
-        footer {
-            position: fixed;
-            left: 50%;
-            bottom: 10px;
-            transform: translateX(-50%);
-            color: #aaa;
-            background: none;
-            padding: 0;
-            border: none;
-            box-shadow: none;
-            font-size: 0.85em;
-            letter-spacing: 1px;
-            user-select: none;
-            text-align: center;
-        }
-        .animated-grid {
-            width: calc(100% - 340px);
-            height: calc(100% - 160px);
-            position: absolute;
-            top: 160px;
-            left: 340px;
-            background-image:
-                linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: pan-grid 8s ease-in-out infinite;
-        }
-        @keyframes pan-grid {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 420px 420px;
-            }
+        main:hover { box-shadow: 0 0 16px 4px rgba(255,152,0,0.75); }
+        .main-content { position: relative; min-height: 280px; }
+        .typing-title, .typing-subtitle {
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .15em solid #FF9800;
+            font-family: inherit;
+            display: inline-block;
+            box-sizing: border-box;
         }
         .typing-title {
-            color: #fff;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: .15em solid #FF9800;
-            font-family: inherit;
-            display: inline-block;
-            box-sizing: border-box;
-            width: 16ch; /* 根據字數調整 */
-            animation:
-                typing-title 1.2s steps(10, end),
-                caret-hide 0.01s linear 1.2s forwards;
+            width: 16ch;
+            animation: typing-title 1.2s steps(10, end), caret-hide 0.01s linear 1.2s forwards;
         }
-        @keyframes typing-title {
-            from { width: 0 }
-            to { width: 16ch }
-        }
-        @keyframes caret-hide {
-            to { border-right-color: transparent; }
-        }
+        @keyframes typing-title { from { width: 0 } to { width: 16ch } }
+        @keyframes caret-hide { to { border-right-color: transparent; } }
         .typing-subtitle {
-            color: #fff;
-            overflow: hidden;
-            white-space: nowrap;
-            border-right: .15em solid #FF9800;
-            opacity: 0;
-            font-family: inherit;
-            display: inline-block;
-            box-sizing: border-box;
             width: 41ch;
-            animation:
-                typing-subtitle 2.6s steps(26, end) 1.2s forwards,
-                blink-caret .7s step-end 1.2s infinite;
+            opacity: 0;
+            animation: typing-subtitle 2.6s steps(26, end) 1.2s forwards, blink-caret .7s step-end 1.2s infinite;
         }
         @keyframes typing-subtitle {
             0% { width: 0; opacity: 1;}
@@ -170,13 +118,8 @@
             font-weight: bold;
             text-decoration: none;
             border: none;
-            outline: none;
             cursor: pointer;
-            transition: 
-                background 0.25s,
-                color 0.25s,
-                box-shadow 0.25s,
-                transform 0.18s;
+            transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s;
             box-shadow: 0 2px 12px 0 rgba(255,152,0,0.08);
             letter-spacing: 1px;
             display: inline-block;
@@ -202,44 +145,43 @@
             box-shadow: 0 0 16px 2px #FF9800cc;
             transform: translateY(-3px) scale(1.04);
         }
-        .btn:focus {
-            outline: none;
-            box-shadow: none;
-        }
-        .main-content {
-            position: relative;
-            min-height: 280px;
-        }
         .button-group.css-delay {
             position: absolute;
             right: 0;
             bottom: 0;
-            display: flex;
             gap: 40px;
             opacity: 0;
             pointer-events: none;
             animation: show-btns 0.8s ease forwards;
-            animation-delay: 3.9s; 
+            animation-delay: 3.9s;
         }
-        @keyframes show-btns {
-            to {
-                opacity: 1;
-                pointer-events: auto;
-            }
+        @keyframes show-btns { to { opacity: 1; pointer-events: auto; } }
+        footer {
+            position: fixed;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+            color: #aaa;
+            background: none;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            user-select: none;
+            text-align: center;
         }
+        footer a { color: #aaa; text-decoration: underline; }
     </style>
 </head>
 <body>
     <header>
-        <a href=""><img class="logo" src="/Demo-Web/LOGO/星火网页引擎 图标.png" alt="星火网页引擎 图标.png"></a>
+        <a href=""><img class="logo" src="/Demo-Web/LOGO/星火网页引擎 图标.png" alt="星火网页引擎"></a>
         <div class="logo-line"></div>
         <div class="logo-vert"></div>
         <nav>
             <ul>
                 <li><a href="https://github.com/Liyue-Wei/XingHuo-Web-Engine">首页</a></li>
-                <li><a href="">主题</a></li>
-                <li><a href="">文档</a></li>
-                <li><a href="">关于</a></li>
+                <li><a href="#">主题</a></li>
+                <li><a href="#">文档</a></li>
+                <li><a href="#">关于</a></li>
             </ul>
         </nav>
     </header>
@@ -256,7 +198,8 @@
         </div>
     </main>
     <footer>
-        &copy 2025 XingHuo Web Engine &nbsp;|&nbsp; MIT LICENSE &nbsp;|&nbsp; Developed by <a href="https://github.com/Liyue-Wei" target="_blank" style="color:#aaa;text-decoration:underline;">Liyue-Wei</a> on GitHub
+        &copy; 2025 XingHuo Web Engine | MIT LICENSE | Developed by
+        <a href="https://github.com/Liyue-Wei" target="_blank">Liyue-Wei</a> on GitHub
     </footer>
 </body>
 </html>
