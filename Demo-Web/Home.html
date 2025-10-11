@@ -71,7 +71,7 @@
             bottom: 120px;
             min-width: 600px;
             min-height: 300px;
-            padding: 40px 40px;
+            padding: 20px 40px;
             border-radius: 16px;
             background: rgba(0,0,0,0.4);
             box-shadow: 0 0 16px 4px rgba(0,0,0,0.3);
@@ -115,6 +115,115 @@
                 background-position: 420px 420px;
             }
         }
+        /* 主標題：不閃爍，打完游標消失 */
+        .typing-title {
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .15em solid #FF9800;
+            font-family: inherit;
+            display: inline-block;
+            box-sizing: border-box;
+            width: 16ch; /* 根據字數調整 */
+            animation:
+                typing-title 1.2s steps(10, end),
+                caret-hide 0.01s linear 1.2s forwards;
+        }
+        @keyframes typing-title {
+            from { width: 0 }
+            to { width: 16ch }
+        }
+        @keyframes caret-hide {
+            to { border-right-color: transparent; }
+        }
+        .typing-subtitle {
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .15em solid #FF9800;
+            opacity: 0;
+            font-family: inherit;
+            display: inline-block;
+            box-sizing: border-box;
+            width: 41ch;
+            animation:
+                typing-subtitle 2.6s steps(26, end) 1.2s forwards,
+                blink-caret .7s step-end 1.2s infinite;
+        }
+        @keyframes typing-subtitle {
+            0% { width: 0; opacity: 1;}
+            99% { opacity: 1;}
+            100% { width: 41ch; opacity: 1;}
+        }
+        @keyframes blink-caret {
+            from, to { border-right-color: transparent }
+            50% { border-right-color: #FF9800; }
+        }
+        .button-group {
+            margin-top: 36px;
+            display: flex;
+            gap: 20px;
+        }
+        .btn {
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            transition: 
+                background 0.25s,
+                color 0.25s,
+                box-shadow 0.25s,
+                transform 0.18s;
+            box-shadow: 0 2px 12px 0 rgba(255,152,0,0.08);
+            letter-spacing: 1px;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: #FF9800;
+            color: #fff;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background: #fff;
+            color: #FF9800;
+            box-shadow: 0 0 16px 2px #FF9800cc;
+            transform: translateY(-3px) scale(1.04);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: #FF9800;
+            border: 2px solid #FF9800;
+        }
+        .btn-secondary:hover, .btn-secondary:focus {
+            background: #FF9800;
+            color: #fff;
+            box-shadow: 0 0 16px 2px #FF9800cc;
+            transform: translateY(-3px) scale(1.04);
+        }
+        .main-content {
+            position: relative;
+            min-height: 280px;
+        }
+        .button-group.css-delay {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            gap: 40px;
+            opacity: 0;
+            pointer-events: none;
+            animation: show-btns 0.8s ease forwards;
+            animation-delay: 3.8s; 
+        }
+        @keyframes show-btns {
+            to {
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
     </style>
 </head>
 <body>
@@ -134,7 +243,13 @@
     <div class="animated-grid"></div>
     <main>
         <div class="main-content">
-
+            <h1 class="typing-title">忘掉繁琐，专注灵感</h1>
+            <br>
+            <h4 class="typing-subtitle">用最简单的语言，部属您的网页，让技术走入千家万户</h4>
+            <div class="button-group css-delay">
+                <a href="#" class="btn btn-primary">立即部署</a>
+                <a href="#" class="btn btn-secondary">了解更多</a>
+            </div>
         </div>
     </main>
     <footer>
